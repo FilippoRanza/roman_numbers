@@ -14,8 +14,6 @@ are the FullConversion (int -> roman -> int) tests.
 
 import unittest
 
-from secrets import choice
-
 from roman_numbers import int_to_roman, int_to_roman_safe
 from roman_numbers import roman_to_int, roman_to_int_safe
 from roman_numbers import is_valid_roman
@@ -216,15 +214,21 @@ class TestFullConvertionCombined(unittest.TestCase):
         """
         Generate all possibile integers from 1 to 9999
         run test on both fast and safe version.
-        The used version is randomly chosen
         """
         for i in range(1, 10000):
-            func_int_to_roman = choice([int_to_roman, int_to_roman_safe])
-            roman = func_int_to_roman(i, upper=upper)
+            safe_roman = int_to_roman_safe(i, upper=upper)
+            fast_roman = int_to_roman(i, upper=upper)
+            self.assertEqual(safe_roman, fast_roman)
 
-            func_roman_to_int = choice([roman_to_int, roman_to_int_safe])
-            arabic = func_roman_to_int(roman)
-            self.assertEqual(i, arabic)
+            if i % 2 == 0:
+                safe_arabic = roman_to_int_safe(safe_roman)
+                fast_arabic = roman_to_int(fast_roman)
+            else:
+                safe_arabic = roman_to_int_safe(fast_roman)
+                fast_arabic = roman_to_int(safe_roman)
+            
+            self.assertEqual(safe_arabic, fast_arabic)
+            self.assertEqual(i, fast_arabic)
 
 
     def test_full_convertion_lower_fast(self):
