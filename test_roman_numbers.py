@@ -226,7 +226,7 @@ class TestFullConvertionCombined(unittest.TestCase):
             else:
                 safe_arabic = roman_to_int_safe(fast_roman)
                 fast_arabic = roman_to_int(safe_roman)
-            
+
             self.assertEqual(safe_arabic, fast_arabic)
             self.assertEqual(i, fast_arabic)
 
