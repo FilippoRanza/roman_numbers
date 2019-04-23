@@ -14,7 +14,7 @@ are the FullConversion (int -> roman -> int) tests.
 
 import unittest
 
-from random import choice
+from secrets import choice
 
 from roman_numbers import int_to_roman, int_to_roman_safe
 from roman_numbers import roman_to_int, roman_to_int_safe
