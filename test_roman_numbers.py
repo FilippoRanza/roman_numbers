@@ -4,10 +4,21 @@
 
 """
 Tests case for roman_number.py
+Test on int to roman and roman to int are run on safe
+(with check on input variables) version.
+
+To ensure that safe and fast version generates the
+same output under controlled circumstances there
+are the FullConversion (int -> roman -> int) tests.
 """
 
 import unittest
-from roman_numbers import *
+
+from random import choice
+
+from roman_numbers import int_to_roman, int_to_roman_safe
+from roman_numbers import roman_to_int, roman_to_int_safe
+from roman_numbers import is_valid_roman
 
 
 CORRECT_RESULTS = [
@@ -46,7 +57,7 @@ class TestIsValidRoman(unittest.TestCase):
         against them
         """
         for i in range(1, 10000):
-            roman = int_to_roman(i, upper=upper)
+            roman = int_to_roman_safe(i, upper=upper)
             self.assertTrue(is_valid_roman(roman), roman)
 
     def test_full_upper(self):
@@ -72,17 +83,19 @@ class TestIsValidRoman(unittest.TestCase):
 class TestIntToRoman(unittest.TestCase):
     """
     Test int to roman convertion.
+    This test is run only on safe version
     """
 
     def test_errors(self):
         """
         Check that wrong input raises
         an exception
+        Here safe version is mandatory.
         """
         for i in ['yt', 5.6, (4.5, 7)]:
             with self.assertRaises(ValueError):
-                int_to_roman(i)
-                int_to_roman(i, upper=False)
+                int_to_roman_safe(i)
+                int_to_roman_safe(i, upper=False)
 
     def test_convertion(self):
         """
@@ -91,12 +104,13 @@ class TestIntToRoman(unittest.TestCase):
         correct
         """
         for roman, integer in CORRECT_RESULTS:
-            self.assertEqual(int_to_roman(integer), roman)
+            self.assertEqual(int_to_roman_safe(integer), roman)
 
 
 class TestRomanToInt(unittest.TestCase):
     """
-    Test Roman to integer conversion
+    Test Roman to integer conversion.
+    This test is run only on safe version
     """
 
     def test_roman_to_int_value(self):
@@ -106,7 +120,7 @@ class TestRomanToInt(unittest.TestCase):
         correct
         """
         for roman, integer in CORRECT_RESULTS:
-            self.assertEqual(roman_to_int(roman), integer)
+            self.assertEqual(roman_to_int_safe(roman), integer)
 
     def test_roman_to_int_error(self):
         """
@@ -115,36 +129,112 @@ class TestRomanToInt(unittest.TestCase):
         """
         for i in [45, 5.6, (6, '8')]:
             with self.assertRaises(ValueError):
-                roman_to_int(i)
+                roman_to_int_safe(i)
 
         for i in WRONG_ROMAN:
             with self.assertRaises(ValueError):
-                roman_to_int(i)
+                roman_to_int_safe(i)
 
 
-class TestFullConvertion(unittest.TestCase):
+class TestFullConvertionSafe(unittest.TestCase):
     """
     Run a full convertion test:
         int -> roman -> int
-    and checks that the two integers are equals
+    and checks that the two integers are equals.
+    This test is run only on safe version.
     """
 
-    def full_convertion_run(self, upper):
+    def full_convertion_run_safe(self, upper):
         """
         Generate all possibile integers from 1 to 9999
+        run test on safe (with input check) version
+        """
+        for i in range(1, 10000):
+            roman = int_to_roman_safe(i, upper=upper)
+            arabic = roman_to_int_safe(roman)
+            self.assertEqual(i, arabic)
+
+
+    def test_full_convertion_lower_safe(self):
+        """
+        Test lower case output
+        """
+        self.full_convertion_run_safe(False)
+
+
+    def test_full_convertion_upper_safe(self):
+        """
+        Test upper case output
+        """
+        self.full_convertion_run_safe(True)
+
+
+class TestFullConvertionFast(unittest.TestCase):
+    """
+    Run a full convertion test:
+        int -> roman -> int
+    and checks that the two integers are equals.
+    This test is run only on fast version.
+    """
+
+    def full_convertion_run_fast(self, upper):
+        """
+        Generate all possibile integers from 1 to 9999
+        run test on fast (without input check) version
         """
         for i in range(1, 10000):
             roman = int_to_roman(i, upper=upper)
             arabic = roman_to_int(roman)
             self.assertEqual(i, arabic)
 
-    def test_full_convertion_lower(self):
+
+    def test_full_convertion_lower_fast(self):
+        """
+        Test lower case output
+        """
+        self.full_convertion_run_fast(False)
+
+
+    def test_full_convertion_upper_fast(self):
+        """
+        Test upper case output
+        """
+        self.full_convertion_run_fast(True)
+
+
+class TestFullConvertionCombined(unittest.TestCase):
+    """
+    Run a full convertion test:
+        int -> roman -> int
+    and checks that the two integers are equals.
+    This test is run on both fast and safe version
+    This test ensure safe and fast version interoperability
+    and consistency
+    """
+
+    def full_convertion_run(self, upper):
+        """
+        Generate all possibile integers from 1 to 9999
+        run test on both fast and safe version.
+        The used version is randomly chosen
+        """
+        for i in range(1, 10000):
+            func_int_to_roman = choice([int_to_roman, int_to_roman_safe])
+            roman = func_int_to_roman(i, upper=upper)
+
+            func_roman_to_int = choice([roman_to_int, roman_to_int_safe])
+            arabic = func_roman_to_int(roman)
+            self.assertEqual(i, arabic)
+
+
+    def test_full_convertion_lower_fast(self):
         """
         Test lower case output
         """
         self.full_convertion_run(False)
 
-    def test_full_convertion_upper(self):
+
+    def test_full_convertion_upper_fast(self):
         """
         Test upper case output
         """

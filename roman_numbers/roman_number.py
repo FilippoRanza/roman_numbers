@@ -70,11 +70,6 @@ def roman_to_int(roman):
 
     return: integer value of input Roman Numeral
     """
-    if not isinstance(roman, str):
-        raise ValueError(str)
-
-    if not is_valid_roman(roman):
-        raise ValueError('Malformatted Roman Numeral')
 
     out = 0
     prev = 0
@@ -94,11 +89,37 @@ def roman_to_int(roman):
     return out
 
 
+def roman_to_int_safe(roman):
+    """
+    Convert input Roman Numeral into
+    the equivalent interger(python int),
+    this version perform security and type
+    check on the input arguments:
+        raises ValueError if roman is not
+        str
+
+        raises ValueError if roman does not
+        pass is_valid_roman test
+
+    roman: string to convert
+
+    return: integer value of input Roman Numeral
+    """
+
+
+    if not isinstance(roman, str):
+        raise ValueError(str)
+
+    if not is_valid_roman(roman):
+        raise ValueError('Malformatted Roman Numeral')
+
+    return roman_to_int(roman)
+
+
 def int_to_roman(number, upper=True):
     """
     Convert give integer into
     equivalent Roman Numeral(python string)
-
 
     number: integer to convert
     upper: if True return an upper case Roman Numeral,
@@ -106,8 +127,6 @@ def int_to_roman(number, upper=True):
 
     return: Roman Numeral Equivalent to input number
     """
-    if not isinstance(number, int):
-        raise ValueError(int)
 
     out = ''
 
@@ -123,6 +142,40 @@ def int_to_roman(number, upper=True):
         reduce //= 10
 
     return out
+
+
+def int_to_roman_safe(number, upper=True):
+    """
+    Convert give integer into
+    equivalent Roman Numeral(python string),
+    this version perform security and type
+    check on the input arguments:
+        raises ValueError if number is not
+        int
+
+        raises ValueError if upper is not
+        bool
+
+        raises ValueError if number <= 0
+
+
+    number: integer to convert
+    upper: if True return an upper case Roman Numeral,
+           otherwise a lower case Numeral is returned
+
+    return: Roman Numeral Equivalent to input number
+    """
+
+    if not isinstance(number, int):
+        raise ValueError(int)
+
+    if not isinstance(upper, bool):
+        raise ValueError(bool)
+
+    if number <= 0:
+        raise ValueError('input must be larger then 0')
+
+    return int_to_roman(number, upper)
 
 
 if __name__ == "__main__":
