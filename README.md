@@ -20,19 +20,19 @@ No system to write large roman numeral is currently supported.
 
 ### Safe Version
 Convetion functions are available in two different forms:
-+  safe: those versions(function name end with _safe) perform 
++   safe: those versions(function name end with _safe) perform 
 checks on the input, ensuring that input type is correct and 
 input variables are in the right form.
 
-+  fast: those versions don't perform any check on the input, 
++   fast: those versions don't perform any check on the input, 
 assuming the values are both of the correct type and in the 
 correct form.
 
 ### Correct Input Format
-+  int_to_roman (integer to roman numeral convertion) consider 
++   int_to_roman (integer to roman numeral convertion) consider 
 as correct input any python integer lerger then zero
 
-+  roman_to_int (roman numeral to integer convertion) consider
++   roman_to_int (roman numeral to integer convertion) consider
 as correct input ant python string that contains a correct 
 roman numeral and nothing more. To test if a string is correct
 or not is_valid_roman function is available
