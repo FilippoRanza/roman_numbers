@@ -1,5 +1,7 @@
 #! /usr/bin/python
 
+# Copyright (c) 2019 Filippo Ranza <filipporanza@gmail.com>
+
 """
 roman_number - convert arabic integer to roman numeral
 and vice versa
