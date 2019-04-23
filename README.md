@@ -36,7 +36,3 @@ Convetion functions are available in two different forms:
   as correct input ant python string that contains a correct 
   roman numeral and nothing more. To test if a string is correct
   or not is_valid_roman function is available
-
-
-
-
