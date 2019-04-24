@@ -10,7 +10,7 @@ and vice versa
 
 import re
 
-ROMAN_REGEX = re.compile(
+_ROMAN_REGEX = re.compile(
     r'M*(CM)?(CD|DC{0,3}|C{0,3})?(XC|XL|LX{0,3}|X{0,3})?(IX|IV|VI{0,3}|I{0,3})?', re.I)
 
 
@@ -27,5 +27,5 @@ def is_valid_roman(roman):
     if not isinstance(roman, str):
         return False
 
-    tmp = ROMAN_REGEX.fullmatch(roman)
+    tmp = _ROMAN_REGEX.fullmatch(roman)
     return tmp is not None

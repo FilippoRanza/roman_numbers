@@ -5,8 +5,6 @@
 """
 roman_number - convert arabic integer to roman numeral
 and vice versa
-
-export convertion and check functions
 """
 
 from .check_roman_numeral import is_valid_roman

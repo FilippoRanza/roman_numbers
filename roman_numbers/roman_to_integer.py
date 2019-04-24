@@ -11,7 +11,7 @@ Roman Numeral(Python string) to Python integer
 from .check_roman_numeral import is_valid_roman
 
 
-ROMAN_INT_VALUE = {
+_ROMAN_INT_VALUE = {
     'M'  : 1000,
     'm'  : 1000,
     'D'  : 500,
@@ -42,7 +42,7 @@ def roman_to_int(roman):
     out = 0
     prev = 0
     for token in roman:
-        curr = ROMAN_INT_VALUE[token]
+        curr = _ROMAN_INT_VALUE[token]
         if curr > prev:
             out -= prev
         else:

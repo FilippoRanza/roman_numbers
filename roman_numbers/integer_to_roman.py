@@ -8,16 +8,16 @@ to a Roman Numeral (Python string)
 """
 
 
-UPPER_UNITS = ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']
-UPPER_TENS = ['', 'X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC', 'C']
-UPPER_HUNDREDS = ['', 'C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM', 'M']
-UPPER_CONVERT = [UPPER_HUNDREDS, UPPER_TENS, UPPER_UNITS]
+_UPPER_UNITS = ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']
+_UPPER_TENS = ['', 'X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC', 'C']
+_UPPER_HUNDREDS = ['', 'C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM', 'M']
+_UPPER_CONVERT = [_UPPER_HUNDREDS, _UPPER_TENS, _UPPER_UNITS]
 
 
-LOWER_UNITS = ['', 'i', 'ii', 'iii', 'iv', 'v', 'vi', 'vii', 'viii', 'ix', 'x']
-LOWER_TENS = ['', 'x', 'xx', 'xxx', 'xl', 'l', 'lx', 'lxx', 'lxxx', 'xc', 'c']
-LOWER_HUNDREDS = ['', 'c', 'cc', 'ccc', 'cd', 'd', 'dc', 'dcc', 'dccc', 'cm', 'm']
-LOWER_CONVERT = [LOWER_HUNDREDS, LOWER_TENS, LOWER_UNITS]
+_LOWER_UNITS = ['', 'i', 'ii', 'iii', 'iv', 'v', 'vi', 'vii', 'viii', 'ix', 'x']
+_LOWER_TENS = ['', 'x', 'xx', 'xxx', 'xl', 'l', 'lx', 'lxx', 'lxxx', 'xc', 'c']
+_LOWER_HUNDREDS = ['', 'c', 'cc', 'ccc', 'cd', 'd', 'dc', 'dcc', 'dccc', 'cm', 'm']
+_LOWER_CONVERT = [_LOWER_HUNDREDS, _LOWER_TENS, _LOWER_UNITS]
 
 def int_to_roman(number, upper=True):
     """
@@ -37,7 +37,7 @@ def int_to_roman(number, upper=True):
     number %= 1000
 
     reduce = 100
-    convert = UPPER_CONVERT if upper else LOWER_CONVERT
+    convert = _UPPER_CONVERT if upper else _LOWER_CONVERT
 
     for conv in convert:
         out += conv[number // reduce]
