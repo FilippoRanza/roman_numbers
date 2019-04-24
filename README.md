@@ -7,7 +7,7 @@ roman numerals (represented as a python string) or convert from roman numerals
 to python int. 
 
 ## Installation
-To install this script you need `[setuptools](https://github.com/pypa/setuptools)`
+To install this script you need [setuptools](https://github.com/pypa/setuptools)
 From the command line run
 
 ```
@@ -20,7 +20,7 @@ If you want to run test locally you can simply
 python[3] test_roman_numbers.py
 ```
 
-or, if you have installed `[pytest](https://github.com/pytest-dev/pytest)`,
+or, if you have installed [pytest](https://github.com/pytest-dev/pytest),
 you can run
 
 ```
