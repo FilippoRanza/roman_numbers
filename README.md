@@ -7,12 +7,30 @@ roman numerals (represented as a python string) or convert from roman numerals
 to python int. 
 
 ## Installation
-There's no installation method available at this moment.
+To install this script you need `[setuptools](https://github.com/pypa/setuptools)`
+From the command line run
+
+```
+[sudo] python[3] setup.py install
+```
+
+If you want to run test locally you can simply
+
+```
+python[3] test_roman_numbers.py
+```
+
+or, if you have installed `[pytest](https://github.com/pytest-dev/pytest)`,
+you can run
+
+```
+pytest
+```
 
 ## Usage
 Once installed you can simply import this module
 in the usual way. For a complete function
-documentation refer to pydoc.
+documentation refer to `pydoc`.
 
 ## Notes
 ### Large Numbers
@@ -20,7 +38,7 @@ No system to write large roman numeral is currently supported.
 
 ### Safe Version
 Convetion functions are available in two different forms:
-+   safe: those versions(function name end with _safe) perform 
++   safe: those versions(function name end with **_safe**) perform 
 checks on the input, ensuring that input type is correct and 
 input variables are in the right form.
 
@@ -29,13 +47,13 @@ assuming the values are both of the correct type and in the
 correct form.
 
 ### Correct Input Format
-+   int_to_roman (integer to roman numeral convertion) consider 
++   `int_to_roman` (integer to roman numeral convertion) consider 
 as correct input any python integer lerger then zero
 
-+   roman_to_int (roman numeral to integer convertion) consider
++   `roman_to_int` (roman numeral to integer convertion) consider
 as correct input ant python string that contains a correct 
 roman numeral and nothing more. To test if a string is correct
-or not is_valid_roman function is available
+or not `is_valid_roman` function is available
 
 ### Examlpe
-See **example.py** 
+See `example.py` 
