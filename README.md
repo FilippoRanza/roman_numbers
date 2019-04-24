@@ -10,20 +10,20 @@ to python int.
 To install this script you need [setuptools](https://github.com/pypa/setuptools)
 From the command line run
 
-```
+```bash
 [sudo] python[3] setup.py install
 ```
 
 If you want to run test locally you can simply
 
-```
+```bash
 python[3] test_roman_numbers.py
 ```
 
 or, if you have installed [pytest](https://github.com/pytest-dev/pytest),
 you can run
 
-```
+```bash
 pytest
 ```
 
